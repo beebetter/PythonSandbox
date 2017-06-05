@@ -4,9 +4,11 @@
 #X = iris.data
 #y = iris.target
 import pandas as pd
-data = pd.read_csv('./data/AAPL.csv')[150:0:-1]
-X = data.ix[:, 'Open':'Volume'].tolist()
-y = data.ix[:, 'Adj Close'].tolist()
+data = pd.read_csv('./data/AAPL1.csv')[150:0:-1]
+#col = ['Open','High','Low','Close','Adj Close','Volume']
+col = ['Open','High','Low','Adj Close','Volume']
+X = data.as_matrix(col)
+y = data.ix[:, 'Change Direction'].tolist()
 
 from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .5)
