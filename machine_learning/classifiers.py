@@ -34,7 +34,12 @@ col = ['price', 'open', 'high', 'low']
 
 X = data.as_matrix(col)
 y = data.ix[:, 'change'].tolist()
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .5)
+border = int(len(X) / 2)
+X_train = X[0:border]
+X_test = X[border:]
+y_train = y[0:border]
+y_test = y[border:]
+#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .5)
 print("Results on data0")
 for i in range(len(classifiers)):
     classifiers[i].fit(X_train, y_train)
@@ -42,11 +47,17 @@ for i in range(len(classifiers)):
     print (classifiers_names[i], accuracy_score(y_test, predictions))
 
 data = pd.read_csv('./data/data1_1.csv')#[0:150:1]#[150:0:-1]
-col = ['price', 'open', 'high', 'low', '3dh']
+#col = ['price', 'open', 'high', 'low', '3dh']
+col = ['price', '3dh']
 
 X = data.as_matrix(col)
 y = data.ix[:, 'change'].tolist()
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .5)
+border = int(len(X) / 2)
+X_train = X[0:border]
+X_test = X[border:]
+y_train = y[0:border]
+y_test = y[border:]
+#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .5)
 print("\nResults on data1")
 for i in range(len(classifiers)):
     classifiers[i].fit(X_train, y_train)
