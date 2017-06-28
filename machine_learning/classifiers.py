@@ -27,7 +27,7 @@ classifiers_names.append("GaussianNB")
 
 from sklearn.svm import SVC
 classifiers.append(SVC())
-classifiers_names.append("SVC")
+classifiers_names.append("SVM")
 
 data = pd.read_csv('./data/data1_0.csv')#[0:150:1]#[150:0:-1]
 col = ['price', 'open', 'high', 'low']
@@ -63,3 +63,8 @@ for i in range(len(classifiers)):
     classifiers[i].fit(X_train, y_train)
     predictions = classifiers[i].predict(X_test)
     print (classifiers_names[i], accuracy_score(y_test, predictions))
+
+
+data = pd.read_csv('./data/data3.csv')#[0:150:1]#[150:0:-1]
+#col = ['price', 'open', 'high', 'low', '3dh']
+#col = ['price', '3dh', '7dh', 'SegodnyaEconomics', 'SegodnyaPolitics', 'SegodnyaUkraine', 'CensorEconomics', 'CensorPolitics', 'CensorSociety']
